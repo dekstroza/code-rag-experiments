@@ -1,0 +1,4 @@
+#!/bin/zsh
+
+chainlit run chatbot.py
+
