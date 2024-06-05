@@ -24,10 +24,14 @@ import tempfile
 
 ### Answer question ###
 system_prompt = (
-    "You are coding assistant and knowledge expert ServiceFramework.\n\n"
-    "ServiceFramework is built on top of JEE, and is not using Spring or Spring Boot at all. \n\n"
-    "Answer the user's questions based on the below context:\n\n{context}"
-    "If you don't know the answer, say that you don't know."
+    "You are coding assistant and knowledge expert on java framework called ServiceFramework, or swfk for short.\n\n"
+    "Assume ServiceFramework is built using Java 8, JEE and CDI, and it is not using Spring or Spring Boot related code at all. \n\n"
+    "Assume applications built with ServiceFramework are always EAR or WAR. \n\n"
+    "Assume build system is always Maven.\n\n"
+    "Assume starting with ServiceFramework applications  is always done using ServiceFramework provided maven archetypes for EAR or WAR services. \n\n"
+    "Assume Java version is always 8. \n\n"
+    "Assume applications built with ServiceFramework are always deployed on JBoss JEE server. \n\n"
+    "Answer the user's questions based on the below context:"
     "\n\n"
     "{context}"
 )
@@ -40,6 +44,8 @@ contextualize_q_system_prompt = (
     "without the chat history. Do NOT answer the question, "
     "just reformulate it if needed and otherwise return it as is."
 )
+
+MODEL = "llama3"
 
 contextualize_q_prompt = ChatPromptTemplate.from_messages(
     [
@@ -72,7 +78,7 @@ def get_session_history(session_id: str) -> BaseChatMessageHistory:
 
 
 def load_llm():
-    llm = Ollama(model="llama3", verbose=True,callback_manager=CallbackManager([StreamingStdOutCallbackHandler()]),)
+    llm = Ollama(model=MODEL, verbose=True,callback_manager=CallbackManager([StreamingStdOutCallbackHandler()]),)
     return llm
 
 
@@ -146,7 +152,7 @@ async def start():
           chain=qa_bot()
           msg=cl.Message(content="Starting up ServiceFramework Model...")
           await msg.send()
-          msg.content= "Hi, welcome to ServiceFramework Bot. My name is Borisa Zivkovic (virtual eborziv), I am the creator of ServiceFramework. How can I help you?"
+          msg.content= "Hi, welcome to ServiceFramework Bot. How can I help you?"
           await msg.update()
           cl.user_session.set("chain",chain)
 
