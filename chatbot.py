@@ -24,13 +24,9 @@ import tempfile
 
 ### Answer question ###
 system_prompt = (
-    "You are coding assistant and knowledge expert on java framework called ServiceFramework, or swfk for short.\n\n"
-    "Assume ServiceFramework is built using Java 8, JEE and CDI, and it is not using Spring or Spring Boot related code at all. \n\n"
-    "Assume applications built with ServiceFramework are always EAR or WAR. \n\n"
+    "You are coding assistant and knowledge expert on java framework"
     "Assume build system is always Maven.\n\n"
-    "Assume starting with ServiceFramework applications  is always done using ServiceFramework provided maven archetypes for EAR or WAR services. \n\n"
     "Assume Java version is always 8. \n\n"
-    "Assume applications built with ServiceFramework are always deployed on JBoss JEE server. \n\n"
     "Answer the user's questions based on the below context:"
     "\n\n"
     "{context}"
