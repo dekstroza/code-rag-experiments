@@ -146,9 +146,9 @@ def on_chat_end():
 @cl.on_chat_start
 async def start():
           chain=qa_bot()
-          msg=cl.Message(content="Starting up ServiceFramework Model...")
+          msg=cl.Message(content="Starting up Framework Model...")
           await msg.send()
-          msg.content= "Hi, welcome to ServiceFramework Bot. How can I help you?"
+          msg.content= "Hi, welcome to Framework Bot. How can I help you?"
           await msg.update()
           cl.user_session.set("chain",chain)
 
